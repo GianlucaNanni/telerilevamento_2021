@@ -17,3 +17,13 @@ p224r63_2011
 
 # Funzione plot immagini per visualizzare le varie bande
 plot(p224r63_2011)
+
+# Cambio di colori
+cl<-colorRampPalette(c("black","grey","light grey"))(100)
+# Nuovo plot col cambio di colori
+plot(p224r63_2011, col=cl)
+
+# Cambio di colori a piacimento 
+cl<-colorRampPalette(c("black","blue","pink","green","yellow"))(100)
+# Nuovo plot col cambio di colori
+plot(p224r63_2011, col=cl)
