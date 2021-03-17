@@ -24,6 +24,7 @@ cl<-colorRampPalette(c("black","grey","light grey"))(100)
 plot(p224r63_2011, col=cl)
 
 # Cambio di colori a piacimento 
-cl<-colorRampPalette(c("black","blue","pink","green","yellow"))(100)
+clp<-colorRampPalette(c("black","blue","pink","green","yellow"))(100)
 # Nuovo plot col cambio di colori
-plot(p224r63_2011, col=cl)
+plot(p224r63_2011, col=clp)
+
