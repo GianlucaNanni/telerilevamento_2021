@@ -54,3 +54,8 @@ p224r63_2011
 # B5: infrarosso medio
 # B6: infrarosso termico
 # B7: infrarosso medio
+
+# Funzione plot immagine per visualizzare una sola banda
+# dev.off() : ripulisce la (will clean the current graph , se non è già stata chiusa manualmente
+dev.off()
+
