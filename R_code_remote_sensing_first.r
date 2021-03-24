@@ -55,7 +55,16 @@ p224r63_2011
 # B6: infrarosso termico
 # B7: infrarosso medio
 
-# Funzione plot immagine per visualizzare una sola banda
-# dev.off() : ripulisce la (will clean the current graph , se non è già stata chiusa manualmente
+# dev.off() : ripulisce la finestra grafica corrente, se non è già stata chiusa manualmente
 dev.off()
 
+# Funzione plot immagine per visualizzare una sola banda (banda 1)
+plot(p224r63_2011$B1_sre)
+
+# Plot della banda 1 con colori predefiniti (colorRampPalette)
+cls <- colorRampPalette(c("red","blue","green","purple")) (100)
+# Nuovo plot col cambio di colori per una sola banda
+plot(p224r63_2011$B1_sre, col=cls)
+
+# dev.off() : ripulisce la finestra grafica corrente
+dev.off()
