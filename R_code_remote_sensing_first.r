@@ -40,7 +40,7 @@ setwd("C:/lab/") # Windows
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 # Cambio di colori
-cls <- colorRampPalette(c("red","pink","orange","purple")) (200)
+cls <- colorRampPalette(c("red","pink","orange","purple")) (100)
 plot(p224r63_2011, col=cls)
 
 # Funzione per avere le info sul file
@@ -58,7 +58,7 @@ p224r63_2011
 # dev.off() : ripulisce la finestra grafica corrente, se non è già stata chiusa manualmente
 dev.off()
 
-# Funzione plot immagine per visualizzare una sola banda (banda 1)
+# Funzione plot immagine per visualizzare una sola banda ($banda 1)
 plot(p224r63_2011$B1_sre)
 
 # Plot della banda 1 con colori predefiniti (colorRampPalette)
@@ -68,3 +68,14 @@ plot(p224r63_2011$B1_sre, col=cls)
 
 # dev.off() : ripulisce la finestra grafica corrente
 dev.off()
+
+# Funzione par: imposta più parametri nella stessa immagine
+# 1 riga 2 colonne
+par(mfrow=c(1,2))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+# 2 righe; 1 colonna 
+par(mfrow=c(2,1))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+# N.B: fare doppio invio, uno per ogni plot
