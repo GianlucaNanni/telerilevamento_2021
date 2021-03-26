@@ -113,3 +113,24 @@ plot(p224r63_2011$B3_sre, col=clr)
 # Banda dell'INFRAROSSO
 clnir <- colorRampPalette(c("red","orange","yellow")) (100)
 plot(p224r63_2011$B4_sre, col=clnir)
+
+
+# Visualizzazione di dati in PLOT RGB
+# Funzione library per richiamare il pacchetto raster
+library(raster)
+
+# Indicare la cartella da cui estrarre i dati
+setwd("C:/lab/") # Windows
+
+# Funzione brick per importare i dati
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+
+# Spiegazione delle bande di LANDSAT
+# B1: blu
+# B2: verde
+# B3: rosso
+# B4: infrarosso vicino
+# B5: infrarosso medio
+# B6: infrarosso termico
+# B7: infrarosso medio
+
