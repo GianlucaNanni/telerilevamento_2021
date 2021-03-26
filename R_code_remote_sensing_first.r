@@ -15,7 +15,7 @@ p224r63_2011<-brick("p224r63_2011_masked.grd")
 # Funzione per avere le info sul file
 p224r63_2011
 
-# Funzione plot immagini per visualizzare le varie bande
+# Funzione plot: immagini per visualizzare le varie bande
 plot(p224r63_2011)
 
 # Cambio di colori
@@ -58,7 +58,7 @@ p224r63_2011
 # dev.off() : ripulisce la finestra grafica corrente, se non è già stata chiusa manualmente
 dev.off()
 
-# Funzione plot immagine per visualizzare una sola banda ($banda 1)
+# Funzione plot: immagine per visualizzare una sola banda ($banda 1)
 plot(p224r63_2011$B1_sre)
 
 # Plot della banda 1 con colori predefiniti (colorRampPalette)
@@ -134,3 +134,16 @@ p224r63_2011 <- brick("p224r63_2011_masked.grd")
 # B6: infrarosso termico
 # B7: infrarosso medio
 
+# Funzione plotRGB: crea immagini multibanda
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+# Funzione plotRGB con infrarosso
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+
+# Plot multibanda RGB 2x2
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
