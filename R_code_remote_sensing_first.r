@@ -69,7 +69,7 @@ plot(p224r63_2011$B1_sre, col=cls)
 # dev.off() : ripulisce la finestra grafica corrente
 dev.off()
 
-# Funzione par: imposta più parametri nella stessa immagine
+# Funzione par: imposta più parametri grafici nella stessa immagine
 # 1 riga 2 colonne
 par(mfrow=c(1,2))
 plot(p224r63_2011$B1_sre)
@@ -147,7 +147,7 @@ plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
-# Salvare immagine pdf in lab
+# Salvare immagine pdf in C:lab
 pdf("il_mio_primo_pdf_con_R.pdf")
 par(mfrow=c(2,2))
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
@@ -155,3 +155,12 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
 dev.off()
+
+# Funzione plotRGB: crea immagini multibanda ad alto contrasto
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
+
+# Plot multibanda RGB Lin/hist
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")  #colori naturali
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")  #colori falsi
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") #colori falsi con istogramma allungato (hanno più contrasto)
