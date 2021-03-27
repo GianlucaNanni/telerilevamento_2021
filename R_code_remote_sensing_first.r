@@ -159,8 +159,15 @@ dev.off()
 # Funzione plotRGB: crea immagini multibanda ad alto contrasto
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
-# Plot multibanda RGB Lin/hist
+# Plot multibanda RGB: Lin/hist
 par(mfrow=c(3,1))
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")  #colori naturali
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")  #colori falsi
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") #colori falsi con istogramma allungato (hanno più contrasto)
+
+
+# Codice per installare pacchetto aggiuntivo
+install.packages("RStoolbox")
+
+# Funzione library per richiamare il pacchetto
+library(RStoolbox)
