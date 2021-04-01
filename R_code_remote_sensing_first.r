@@ -147,6 +147,7 @@ plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+
 # Salvare immagine pdf in C:lab
 pdf("il_mio_primo_pdf_con_R.pdf")
 par(mfrow=c(2,2))
@@ -197,3 +198,21 @@ plot(p224r63_1988)
 
 # Funzione plotRGB: crea immagini multibanda (colori naturali)
 plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
+# Funzione plotRGB con infrarosso
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+
+# Plot multibanda RGB 2x2 (immagini 1998-2011)
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
+# Salvare immagine pdf in C:lab
+pdf("multitemporale.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+dev.off()
