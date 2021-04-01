@@ -9,7 +9,7 @@ setwd("C:/lab/") # Windows
 # Funzione library per richiamare il pacchetto raster
 library(raster)
 
-# Funzione brick per importare i dati
+# Funzione brick per importare i dati/immagine
 p224r63_2011<-brick("p224r63_2011_masked.grd")
 
 # Funzione per avere le info sul file
@@ -36,7 +36,7 @@ library(raster)
 # Indicare la cartella da cui estrarre i dati
 setwd("C:/lab/") # Windows
 
-# Funzione brick per importare i dati
+# Funzione brick per importare i dati/immagine
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 # Cambio di colori
@@ -122,7 +122,7 @@ library(raster)
 # Indicare la cartella da cui estrarre i dati
 setwd("C:/lab/") # Windows
 
-# Funzione brick per importare i dati
+# Funzione brick per importare i dati/immagine
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 # Spiegazione delle bande di LANDSAT
@@ -134,7 +134,7 @@ p224r63_2011 <- brick("p224r63_2011_masked.grd")
 # B6: infrarosso termico
 # B7: infrarosso medio
 
-# Funzione plotRGB: crea immagini multibanda
+# Funzione plotRGB: crea immagini multibanda (colori naturali)
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
 # Funzione plotRGB con infrarosso
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
@@ -172,16 +172,28 @@ install.packages("RStoolbox")
 library(RStoolbox)
 
 
-#
+#IMMAGINE p224r63_1988 - Set multitemporale
 # Funzione library per richiamare il pacchetto raster
 library(raster)
 
 # Indicare la cartella da cui estrarre i dati
 setwd("C:/lab/") # Windows
 
-# Funzione brick per importare i dati
+# Funzione brick per importare i dati/immagine
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 # Funzione per avere le info sul file
 p224r63_2011
 
+# Funzione brick per importare i dati/immagine
+p224r63_1988 <- brick("p224r63_1988_masked.grd")
+
+# Funzione per avere le info sul file 
+# è la stessa immagine per dimensioni, ma con valori di pixel diversi perchè è di un momento diverso (1988)
+p224r63_1988
+
+# Funzione plot: immagini per visualizzare le varie bande
+plot(p224r63_1988)
+
+# Funzione plotRGB: crea immagini multibanda (colori naturali)
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
