@@ -12,8 +12,18 @@ library(raster)
 setwd("C:/lab/greenland") # Windows
 
 # Codice per installare pacchetto aggiuntivo
-install.packages("rasterVis")
+#install.packages("rasterVis") (Installato)
 # Funzione library per richiamare il pacchetto
 library(rasterVis)
 
-# Funzione raster per caricare singoli strati di dati
+# Funzione raster per importare singoli strati di dati
+lst_2000 <- raster("lst_2000.tif")
+# Funzione plot: immagini per visualizzare le varie bande
+plot(lst_2000)
+
+# Funzione raster per importare singoli strati di dati
+lst_2005 <- raster("lst_2005.tif")
+# Funzione plot: immagini per visualizzare le varie bande
+plot(lst_2005)
+# Nome immagine: visualizza valori min/max
+lst_2005
