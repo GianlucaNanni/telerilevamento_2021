@@ -57,7 +57,7 @@ import
 TGr <- stack(import)
 # Funzione plot: del singolo file
 plot(TGr)
-# Funzione plotRGB: crea immagini multibanda sovrapposte 2000(1=rosso),2005(2=verdi),2010(3=blu)
+# Funzione plotRGB: crea immagini sovrapposte 2000(1=rosso),2005(2=verdi),2010(3=blu)
 plotRGB(TGr, 1, 2, 3, stretch="Lin") # a seconda del colore i valori di lst sono più alti
 # Oppure:
 plotRGB(TGr, 1, 2, 3, stretch="Lin")
