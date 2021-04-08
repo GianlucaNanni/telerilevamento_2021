@@ -13,7 +13,7 @@ setwd("C:/lab/greenland") # Windows
 
 # Codice per installare pacchetto aggiuntivo
 install.packages("rasterVis")
-
-???
 # Funzione library per richiamare il pacchetto
 library(rasterVis)
+
+# Funzione raster per caricare singoli strati di dati
