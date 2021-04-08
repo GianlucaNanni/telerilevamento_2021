@@ -38,3 +38,22 @@ lst_2015 <- raster("lst_2015.tif")
 # Funzione plot: immagini per visualizzare le varie bande
 plot(lst_2015)
 
+# Funzione par: imposta più parametri grafici nella stessa immagine
+# Plot distribuzione "quadrata" di 4 bande
+par(mfrow=c(2,2))
+plot(lst_2000)
+plot(lst_2005)
+plot(lst_2010)
+plot(lst_2015)
+
+# Importare tutte le immagini INSIEME
+# Funzione list.files: crea lista di file per la funzione lapply
+rlist <- list.files(pattern="lst") # pattern=scritta in comune file
+rlist
+# Funzione lapply: applica a lista di file una funzione (raster) 
+import <- lapply(rlist,raster)
+import
+# Funzione stack: raggruppa e rinomina file raster separati
+TGr <- stack(import)
+# Funzione plot: del singolo file
+plot(TGr)
