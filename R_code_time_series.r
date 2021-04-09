@@ -99,3 +99,11 @@ TGr
 
 # Funzione levelplot: disegna grafici di colore falso e di contorno
 levelplot(TGr)
+# Funzione levelplot $: considera ogni file interno
+levelplot(TGr$lst_2000)
+
+# Cambio di colori
+# N.B: colorRampPalette si può usare solo su immagine singole, non su RGB
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+# Nuovo levelplot col cambio di colori
+levelplot(TGr, col.regions=cl)
