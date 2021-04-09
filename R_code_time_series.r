@@ -49,7 +49,7 @@ plot(lst_2015)
 
 # Importare tutte le immagini INSIEME
 # Funzione list.files: crea lista di file per la funzione lapply
-rlist <- list.files(pattern="lst") # pattern=scritta in comune file
+rlist <- list.files(pattern="lst") # pattern=scritta in comune nei file
 # Funzione per avere le info sul file
 rlist
 # Funzione lapply: applica a lista di file una funzione (raster) 
@@ -111,3 +111,34 @@ levelplot(TGr, col.regions=cl)
 levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 # Nuovo levelplot col cambio di colori, nome e titolo
 levelplot(TGr,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+
+
+#Melt
+# Differenza nello strato di ghiaccio 1979-2007
+
+# Importare tutte le immagini INSIEME
+# Funzione list.files: crea lista di file per la funzione lapply
+meltlist <- list.files(pattern="melt") # pattern=scritta in comune nei file
+
+# Funzione lapply: applica a lista di file una funzione (raster)
+melt_import <- lapply(meltlist,raster)
+
+# Funzione stack: raggruppa e rinomina file raster separati
+melt <- stack(melt_import)
+
+# Funzione per avere le info sul file
+melt
+
+# Funzione levelplot: disegna grafici di colore falso e di contorno
+levelplot(melt) #valore dello scoglimento ghiacci, più alto valore=più scoglimento
+
+# Nome associato a sottrazione tra dati (valori un immagine meno valori altra immagine)
+melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+
+# Cambio di colori  
+clb <- colorRampPalette(c("blue","white","red"))(100)
+# Plot col cambio di colori
+plot(melt_amount, col=clb)
+
+# Nuovo levelplot col cambio di colori
+levelplot(melt_amount, col.regions=clb)
