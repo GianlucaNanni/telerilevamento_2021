@@ -50,12 +50,16 @@ plot(lst_2015)
 # Importare tutte le immagini INSIEME
 # Funzione list.files: crea lista di file per la funzione lapply
 rlist <- list.files(pattern="lst") # pattern=scritta in comune file
+# Funzione per avere le info sul file
 rlist
 # Funzione lapply: applica a lista di file una funzione (raster) 
 import <- lapply(rlist,raster)
+# Funzione per avere le info sul file
 import
 # Funzione stack: raggruppa e rinomina file raster separati
 TGr <- stack(import)
+# Funzione per avere le info sul file
+TGr
 # Funzione plot: del singolo file
 plot(TGr)
 # Funzione plotRGB: crea immagini sovrapposte 2000(1=rosso),2005(2=verdi),2010(3=blu)
@@ -91,3 +95,7 @@ import
 
 # Funzione stack: raggruppa e rinomina file raster separati
 TGr <- stack(import)
+TGr
+
+# Funzione levelplot: disegna grafici di colore falso e di contorno
+levelplot(TGr)
