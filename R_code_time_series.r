@@ -107,3 +107,7 @@ levelplot(TGr$lst_2000)
 cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 # Nuovo levelplot col cambio di colori
 levelplot(TGr, col.regions=cl)
+# Nuovo levelplot col cambio di colori e nome
+levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+# Nuovo levelplot col cambio di colori, nome e titolo
+levelplot(TGr,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
