@@ -2,7 +2,7 @@
 # Groenlandia (Greenland) aumento della temperatura
 # Dati e codici di Emanuela Cosma
 
-# Codice per installare i pacchetti aggiuntivi raster (già installato)
+# Codice per installare pacchetto aggiuntivo raster (già installato)
 #install.packages("raster")
 
 # Funzione library per richiamare il pacchetto: raster
@@ -69,7 +69,7 @@ plotRGB(TGr, 1, 2, 3, stretch="Lin")
 
 
 #Estensione della fusione dello strato di ghiaccio
-# Codice per installare i pacchetti aggiuntivi: raster (già installato)
+# Codice per installare pacchetto aggiuntivo: raster (già installato)
 #install.packages("raster")
 
 # Funzione library per richiamare il pacchetto raster
