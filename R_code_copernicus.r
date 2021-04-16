@@ -5,7 +5,7 @@
 library(raster)
 
 # Codice per installare pacchetto aggiuntivo: ncdf4
-# install.packages("ncdf4") #già inserito
+# install.packages("ncdf4") #già installato
 
 # Funzione library per leggere file: .nc
 library(ncdf4)
@@ -34,13 +34,14 @@ lswtres <- aggregate(lswt, fact=100)
 # Nuovo plot col cambio di colori
 plot(lswtres, col=cl)
 
+
 #
 # Codice per installare pacchetto aggiuntivo: knitr
-install.packages("knitr")
+# install.packages("knitr") #già installato
 # Funzione library per richiamare il pacchetto: knitr
 library(knitr)
 
 # Codice per installare pacchetto aggiuntivo: RStoolbox
-install.packages("RStoolbox")
+# install.packages("RStoolbox") #già installato
 # Funzione library per richiamare il pacchetto: RStoolbox
 library(RStoolbox)
