@@ -74,7 +74,7 @@ plot(vegpres, col=cl)
 
 
 
-#
+# USIAMO CODICE RINOMINATO (template) PER FARE FILE FINALE
 # Codice per installare pacchetto aggiuntivo: knitr
 # install.packages("knitr") #già installato
 # Funzione library per richiamare il pacchetto: knitr
@@ -84,3 +84,5 @@ library(knitr)
 # install.packages("RStoolbox") #già installato
 # Funzione library per richiamare il pacchetto: RStoolbox
 library(RStoolbox)
+
+# Funzione stitch: creare automaticamente un report basato su uno script di R
