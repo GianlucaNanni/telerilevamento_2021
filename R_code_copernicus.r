@@ -29,7 +29,8 @@ plot(lswt, col=cl)
 lswt <- raster::reclassify(lswt, cbind(252:255, NA), right=TRUE)
 
 # resampling (ricampionamento)
-# Funzione aggregate per ridurre linearmente N° pixel immagine (=100), quindi si visualizza meglio
+# Funzione aggregate per ridurre (aggregare) N° pixel immagine, quindi si visualizza meglio xkè ha N° ristretto di pixel
+# Funzione: fact=100, ogni 100 pixel avrò 1 pixel (linearmente 100x100 pixel li trasformiamo in 1 pixel)
 lswtres <- aggregate(lswt, fact=100)
 # Nuovo plot col cambio di colori
 plot(lswtres, col=cl)
