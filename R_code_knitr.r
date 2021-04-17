@@ -14,10 +14,11 @@ library(knitr)
 library(RStoolbox)
 
 # Indicare la cartella da cui estrarre i dati
-setwd("C:/lab/") # Windows
+setwd("C:/lab/greenland") # Windows
 
 # Copiare un codice (Greenland) in Documento di testo (.txt) e copiare in (C:lab)
-
-
-
 # Funzione stitch: creare automaticamente un report basato su uno script di R
+stitch("R_code_greenland.txt", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
+
+
+
