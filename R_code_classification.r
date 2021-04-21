@@ -31,4 +31,4 @@ sotw <- unsuperClass(so, nClasses=20)
 # Cambio di colori
 cls <- colorRampPalette(c('yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
-plot(sotw$map,col=cls)
+plot(sotw$map,col=cls) 
