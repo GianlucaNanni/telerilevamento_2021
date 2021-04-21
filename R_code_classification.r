@@ -18,18 +18,17 @@ so
 # Funzione plotRGB: crea immagini multibanda
 plotRGB(so, 1, 2, 3, stretch="lin")
 
-# Funzione unsuperClass :opera la classificazione non supervisionata
+# Funzione unsuperClass: opera la classificazione non supervisionata
 soc <- unsuperClass(so, nClasses=3)
 # Cambio di colori
-cl<-colorRampPalette(c("black","grey","light grey"))(100)
+cl <- colorRampPalette(c('yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
 plot(soc$map,col=cl)
 
-# Funzione unsuperClass :opera la classificazione non supervisionata
+# Funzione unsuperClass: opera la classificazione non supervisionata
 # A 20 classi
 sotw <- unsuperClass(so, nClasses=20)
 # Cambio di colori
 cls <- colorRampPalette(c('yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
 plot(sotw$map,col=cls)
-
