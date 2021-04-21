@@ -41,3 +41,7 @@ sun <- brick("sun.png")
 
 # Funzione unsuperClass: opera la classificazione non supervisionata
 sunc <- unsuperClass(sun, nClasses=3)
+# Plot:
+plot(sunc$map)
+
+
