@@ -12,4 +12,5 @@ so <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 # Funzione per avere le info sul 
 so
 
-# Visualizzare livelli RGB
+# Funzione plotRGB: crea immagini multibanda
+plotRGB(so, 1, 2, 3, stretch="lin")
