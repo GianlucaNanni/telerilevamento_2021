@@ -23,7 +23,8 @@ soc <- unsuperClass(so, nClasses=3)
 # Cambio di colori
 cl <- colorRampPalette(c('yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
-plot(soc$map,col=cl)
+plot(soc$map,col=cl) # Oppure plot(soc$map) se NON c'è la colorRampPalette prima
+
 
 # Funzione unsuperClass: opera la classificazione non supervisionata
 # A 20 classi
@@ -32,3 +33,11 @@ sotw <- unsuperClass(so, nClasses=20)
 cls <- colorRampPalette(c('yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
 plot(sotw$map,col=cls) 
+
+
+## Download immagine da: https://www.esa.int/ESA_Multimedia/Missions/Solar_Orbiter/(result_type)/images
+# Funzione brick per importare i dati/immagine
+sun <- brick("sun.png")
+
+# Funzione unsuperClass: opera la classificazione non supervisionata
+sunc <- unsuperClass(sun, nClasses=3)
