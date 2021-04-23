@@ -21,5 +21,6 @@ plot(p224r63_2011)
 # Plot della banda 1 contro la banda 2 (col=colore, pch=forma punti, cex=dimensione di punti)
 plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
 
-# Plot tra tutte le correlazione (di bande) di un dataset (matrice di scatterplot, dati non immagini)
+# Plot di tutte le correlazioni tra bande di un dataset (matrice di scatterplot, di dati non immagini)
+# La tabella riporta in diagonale le bande (sono le variabili), correlazione varia da 0(poco) a 1 (molto)
 pairs(p224r63_2011)
