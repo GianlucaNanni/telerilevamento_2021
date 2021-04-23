@@ -64,4 +64,6 @@ gc
 
 # Funzione plotRGB: crea immagini multibanda
 plotRGB(gc, r=1, g=2, b=3, stretch="lin")
+# Funzione plotRGB: crea immagini multibanda ad alto contrasto
 plotRGB(gc, r=1, g=2, b=3, stretch="hist")
+
