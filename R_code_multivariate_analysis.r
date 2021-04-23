@@ -1,1 +1,25 @@
 # R_code_multivariate_analysis.r
+
+# Indicare la cartella da cui estrarre i dati
+setwd("C:/lab/") # Windows
+
+# Funzione library per richiamare il pacchetto: raster
+library(raster)
+
+# Funzione library per richiamare il pacchetto: RStoolbox
+library(RStoolbox)
+
+# Funzione brick per importare i dati/immagine
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+
+# Funzione per avere le info sul file
+p224r63_2011
+
+# Funzione plot: immagini per visualizzare le varie bande
+plot(p224r63_2011)
+
+# Plot della banda 1 contro la banda 2 (col=colore, pch=forma punti, cex=dimensione di punti)
+plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
+
+# Plot tra tutte le correlazione (di bande) di un dataset (matrice di scatterplot, dati non immagini)
+pairs(p224r63_2011)
