@@ -22,5 +22,5 @@ plot(p224r63_2011)
 plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
 
 # Plot di tutte le correlazioni tra bande di un dataset (matrice di scatterplot, di dati non immagini)
-# La tabella riporta in diagonale le bande (sono le variabili), correlazione varia da 0(poco) a 1 (molto)
+# La tabella riporta in diagonale le bande (sono le variabili), l'indice di correlazione varia da 0(negativo) a 1 (positivo)
 pairs(p224r63_2011)
