@@ -68,5 +68,5 @@ plot(vegp, col=cl)
 # Funzione aggregate per ridurre (aggregare) N° pixel immaginee diminuire la risoluzione, quindi si visualizza meglio xkè ha N° ristretto di pixel
 # Funzione: fact=100, ogni 100 pixel avrò 1 pixel (linearmente 100x100 pixel li trasformiamo in 1 pixel)
 vegpres <- aggregate(vegp, fact=100)
-# Nuovo plot col cambio di colori
+# Nuovo plot col cambio di pixel
 plot(vegpres, col=cl)
