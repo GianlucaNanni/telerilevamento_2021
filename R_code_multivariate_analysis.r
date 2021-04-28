@@ -29,7 +29,7 @@ pairs(p224r63_2011)
 # Funzione aggregate per ridurre (aggregare) N° pixel immagine e diminuire la risoluzione, quindi si visualizza meglio xkè ha N° ristretto di pixel
 # Funzione: fact=10, ogni 10 pixel avrò 1 pixel (linearmente 10x10 pixel li trasformiamo in 1 pixel)
 p224r63_2011res <- aggregate(p224r63_2011, fact=10)
-# Quindi il pixel da 30m diventa 300m, se aumenta grandezza pixel e diminuisce la risoluzione. Maggiore è il dettaglio e minore è la risolzuione
+# Quindi il pixel da 30mx30m diventa 300mx300m, se aumenta grandezza pixel e diminuisce la risoluzione. Maggiore è il dettaglio e minore è la risolzuione
 # Funzione per avere le info sul file
 p224r63_2011res
 
@@ -38,4 +38,24 @@ p224r63_2011res
 # Funzione plotRGB crea immagini multibanda: con infrarosso
 par(mfrow=c(2,1))
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin")
+# Nuovo plot col cambio di pixel
 plotRGB(p224r63_2011res, r=4, g=3, b=2, stretch="lin")
+
+# Funzione rasterPCA: compatta il pacchetto di dati in un N° minore di bande
+p224r63_2011res_pca <- rasterPCA(p224r63_2011res)
+
+# Funzione summary: sommario del modello
+summary(p224r63_2011res_pca$model)
+
+# Funzione per avere le info sul file
+p224r63_2011res_pca
+
+# Plot della mappa
+plot(p224r63_2011m_pca$map)
+
+# Funzione plotRGB (della mappa) con 3 componenti principali
+plotRGB(p224r63_2011res_pca$map, r=1, g=2, b=3, stretch="lin")
+
+# Funzione plot: di una banda rispetto ad un'altra
+plot(p224r63_2011res_pca$map$PC1,p224r63_2011res_pca$map$PC2)
+#Tra la 1°(PC1) componente e la 2°(PC2) non c'è correlazione
