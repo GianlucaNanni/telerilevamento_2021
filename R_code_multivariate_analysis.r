@@ -59,3 +59,5 @@ plotRGB(p224r63_2011res_pca$map, r=1, g=2, b=3, stretch="lin")
 # Funzione plot: di una banda rispetto ad un'altra
 plot(p224r63_2011res_pca$map$PC1,p224r63_2011res_pca$map$PC2)
 #Tra la 1°(PC1) componente e la 2°(PC2) non c'è correlazione
+
+# è importante fare analisi multivariata per ridurre la correlazione tra le variabili: es. ridurre un set di variabili
