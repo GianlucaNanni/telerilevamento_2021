@@ -57,3 +57,11 @@ cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying 
 plot(dvi2, col=cls)
 # Nuovo plot col cambio di colori e titolo
 plot(dvi2, col=cls, main="DVI at time 2")
+
+# Comparazione: analisi multitemporale dei 2 indici
+# Funzione par: imposta più parametri grafici nella stessa immagine
+# 2 righe; 1 colonna
+par(mfrow=c(2,1))
+plot(dvi1, col=cl, main="DVI at time 1")
+plot(dvi2, col=cls, main="DVI at time 2")
+
