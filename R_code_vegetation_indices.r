@@ -65,3 +65,18 @@ par(mfrow=c(2,1))
 plot(dvi1, col=cl, main="DVI at time 1")
 plot(dvi2, col=cls, main="DVI at time 2")
 
+# Differenza tra le 2 zone in tempi diverse
+difdvi <- dvi1 - dvi2
+# Cambio di colori per le differenze
+cld <- colorRampPalette(c('blue','white','red'))(100)
+# Nuovo plot col cambio di colori
+plot(difdvi, col=cld)
+
+
+# Indice ndvi: normalizza i valori sulla somma delle variabili
+# Calcolo 1° indice ndvi= (NIR-red) / (NIR+red)
+ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.2)
+# Cambio di colori
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvi1, col=cl)
