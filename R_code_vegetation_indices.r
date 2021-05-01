@@ -36,5 +36,11 @@ defor1
 defor2
 
 # Calcolo dell'indice di vegetazione e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
-# 1° indice: dvi1=NIR - red
+# Calcolo 1° indice: dvi1=NIR - red
 dvi1 <- defor1$defor1.1 - defor1$defor1.2
+# Plot:
+plot(dvi1)
+# Cambio di colori
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+# Nuovo plot col cambio di colori
+plot(dvi1, col=cl)
