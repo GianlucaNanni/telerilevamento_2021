@@ -3,8 +3,14 @@
 # Indicare la cartella da cui estrarre i dati
 setwd("C:/lab/") # Windows
 
+# Codice per installare pacchetto aggiuntivo: rasterdiv (div= NIR-red)
+# install.packages("rasterdiv") #già installato
+
+# Funzione library per richiamare il pacchetto: rasterdiv
+library(raster) #oppure: require(raster)
+
 # Funzione library per richiamare il pacchetto: raster
-library(raster)
+library(rasterdiv)
 
 # Funzione brick per importare i dati/immagine
 defor1 <- brick("defor1.jpg")
@@ -24,4 +30,11 @@ plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 # Funzione plotRGB: defor2
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
-# Calcolo dell'indice di vegetazione e comparazione tra le 2 immagini (defor1-defor2) per vederne la differenza
+# Funzione per avere le info sul file: nomi bande
+defor1
+# Funzione per avere le info sul file: nomi bande
+defor2
+
+# Calcolo dell'indice di vegetazione e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
+# 1° indice: dvi1=NIR - red
+dvi1 <- defor1$defor1.1 - defor1$defor1.2
