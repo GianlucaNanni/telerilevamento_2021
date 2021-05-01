@@ -12,6 +12,9 @@ library(raster) #oppure: require(raster)
 # Funzione library per richiamare il pacchetto: raster
 library(rasterdiv)
 
+# Funzione library per richiamare il pacchetto: RStoolbox
+library(RStoolbox) # for vegetation indices calculation
+
 # Funzione brick per importare i dati/immagine
 defor1 <- brick("defor1.jpg")
 defor2 <- brick("defor2.jpg")
@@ -35,7 +38,7 @@ defor1
 # Funzione per avere le info sul file: nomi bande
 defor2
 
-# Calcolo dell'indice di vegetazione e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
+# Calcolo dell'indice di vegetazione dvi e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
 # Calcolo 1° indice: dvi1=NIR - red
 dvi1 <- defor1$defor1.1 - defor1$defor1.2
 # Plot:
@@ -73,6 +76,7 @@ cld <- colorRampPalette(c('blue','white','red'))(100)
 plot(difdvi, col=cld)
 
 
+# Calcolo dell'indice di vegetazione ndvi e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
 # Indice ndvi: normalizza i valori sulla somma delle variabili
 # Calcolo 1° indice ndvi= (NIR-red) / (NIR+red)
 ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.2)
@@ -80,3 +84,18 @@ ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
 plot(ndvi1, col=cl)
+
+# Calcolo 2° indice ndvi= (NIR-red) / (NIR+red)
+ndvi2 <- (defor2$defor2.1 - defor2$defor2.2) / (defor2$defor2.1 + defor2$defor2.2)
+# Cambio di colori
+cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvi2, col=cls)
+
+
+# Funzione: spectralIndices (Pacchetto: RStoolbox), per calcolare tutti gli indici
+vi <- spectralIndices(defor1, green = 3, red = 2, nir = 1)
+# Cambio di colori
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(vi, col=cl)
