@@ -68,7 +68,7 @@ par(mfrow=c(2,1))
 plot(dvi1, col=cl, main="DVI at time 1")
 plot(dvi2, col=cls, main="DVI at time 2")
 
-# Differenza tra le 2 zone in tempi diverse
+# Differenza tra l°e 2° zona in tempi diverse
 difdvi <- dvi1 - dvi2
 # Cambio di colori per le differenze
 cld <- colorRampPalette(c('blue','white','red'))(100)
@@ -94,8 +94,23 @@ plot(ndvi2, col=cls)
 
 
 # Funzione: spectralIndices (Pacchetto: RStoolbox), per calcolare tutti gli indici
-vi <- spectralIndices(defor1, green = 3, red = 2, nir = 1)
+# Calcolo indici 1° immagine
+vi1 <- spectralIndices(defor1, green = 3, red = 2, nir = 1) #colori associati al N° della banda
 # Cambio di colori
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
-plot(vi, col=cl)
+plot(vi1, col=cl)
+
+# Calcolo indici 2° immagine
+vi2 <- spectralIndices(defor2, green = 3, red = 2, nir = 1)
+# Cambio di colori
+cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(vi2, col=cls)
+
+# Differenza tra l°e 2° zona in tempi diverse
+difndvi <- ndvi1 - ndvi2
+# Cambio di colori per le differenze
+cld <- colorRampPalette(c('blue','white','red'))(100)
+# Nuovo plot col cambio di colori
+plot(difndvi, col=cld)
