@@ -44,3 +44,16 @@ plot(dvi1)
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
 # Nuovo plot col cambio di colori
 plot(dvi1, col=cl)
+# Nuovo plot col cambio di colori e titolo
+plot(dvi1, col=cl, main="DVI at time 1")
+
+# Calcolo 2° indice: dvi1=NIR - red
+dvi2 <- defor2$defor2.1 - defor2$defor2.2
+# Plot:
+plot(dvi2)
+# Cambio di colori
+cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+# Nuovo plot col cambio di colori
+plot(dvi2, col=cls)
+# Nuovo plot col cambio di colori e titolo
+plot(dvi2, col=cls, main="DVI at time 2")
