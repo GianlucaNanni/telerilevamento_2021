@@ -26,7 +26,7 @@ cl <- colorRampPalette(c('light blue','green','red','yellow'))(100)
 # Plot col cambio di colori
 plot(lswt, col=cl)
 
-# Riclassifico colori immagine
+# Funzione reclassify: riclassifica colori immagine
 lswt <- raster::reclassify(lswt, cbind(252:255, NA), right=TRUE)
 
 # resampling (ricampionamento)
