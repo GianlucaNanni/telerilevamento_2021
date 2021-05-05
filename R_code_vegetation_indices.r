@@ -121,3 +121,13 @@ plot(difndvi, col=cld)
 
 # Funzione library per richiamare il pacchetto: rasterdiv
 library(rasterdiv)
+
+# Plot NDVI
+plot(copNDVI)
+# Più biomassa c'è e maggiore sarà l'indice
+
+# Funzione: cbind cambia dei valori (rimuovere l'acqua)
+# Funzione reclassify: riclassifica colori immagine 
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA)) #significa che i pixel 253,255 sono trasformati in non valori (NA)
+# Plot NDVI
+plot(copNDVI)
