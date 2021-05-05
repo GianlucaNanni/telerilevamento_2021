@@ -6,10 +6,10 @@ setwd("C:/lab/") # Windows
 # Codice per installare pacchetto aggiuntivo: rasterdiv (div= NIR-red)
 # install.packages("rasterdiv") #già installato
 
-# Funzione library per richiamare il pacchetto: rasterdiv
+# Funzione library per richiamare il pacchetto: raster
 library(raster) #oppure: require(raster)
 
-# Funzione library per richiamare il pacchetto: raster
+# Funzione library per richiamare il pacchetto: rasterdiv
 library(rasterdiv)
 
 # Funzione library per richiamare il pacchetto: RStoolbox
@@ -114,3 +114,10 @@ difndvi <- ndvi1 - ndvi2
 cld <- colorRampPalette(c('blue','white','red'))(100)
 # Nuovo plot col cambio di colori
 plot(difndvi, col=cld)
+
+
+## # Worldwide NDVI
+# Vediamo come l'indice di vegetaz., relazionato alle bande del NIR e red, varia nel pianeta
+
+# Funzione library per richiamare il pacchetto: rasterdiv
+library(rasterdiv)
