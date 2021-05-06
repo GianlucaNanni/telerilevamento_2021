@@ -24,3 +24,25 @@ defor2 <- brick("defor2.jpg")
 # Funzione plotRGB: crea immagini multibanda
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
+# Funzione ggr: plotta file raster in differenti scale di grigio
+ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+# Funzione par: imposta più parametri grafici nella stessa immagine
+par(mfrow=c(1,2))
+plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+# Multiframe con ggplot e gridExtra
+
+# Codice per installare pacchetto aggiuntivo: gridExtra (permette di utilizzare ggplot per dati raster)
+# install.packages("gridExtra") #già installato
+# Funzione library per richiamare il pacchetto:
+library(gridExtra)
+
+# Plot defor1:
+p1 <- ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
+# Plot defor2:
+p2 <- ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
+# Funzione grid.arrange: determina N° di righe
+grid.arrange(p1, p2, nrow=2)
+             
