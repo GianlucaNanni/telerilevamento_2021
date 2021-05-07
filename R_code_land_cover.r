@@ -56,9 +56,30 @@ grid.arrange(p1, p2, nrow=2)
 
 
 ## Proseguimento
+# defor1
 # Funzione unsuperClass: opera la classificazione non supervisionata (2 classi)
 d1c <- unsuperClass(defor1, nClasses=2)
 # Funzione per avere le info sul file
 d1c
 # Plot
 plot(d1c$map)
+# Funzione: set.seed(), permettere di ottenere risultati grafici (colori) inversi nel plot precedente (se serve)
+# classe 1: agricoltura
+# classe 2: forestra
+
+# defor2
+# Funzione unsuperClass: opera la classificazione non supervisionata (2 classi)
+d2c <- unsuperClass(defor2, nClasses=2)
+# Funzione per avere le info sul file
+d2c
+# Plot
+plot(d2c$map)
+# Funzione: set.seed(), permettere di ottenere risultati grafici (colori) inversi nel plot precedente (se serve)
+# classe 1: agricoltura
+# classe 2: forestra
+
+# Funzione unsuperClass: opera la classificazione non supervisionata (3 classi)
+d2c3 <- unsuperClass(defor2, nClasses=3)
+# Plot
+plot(d2c3$map)
+
