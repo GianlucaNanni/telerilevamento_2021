@@ -84,7 +84,7 @@ d2c3 <- unsuperClass(defor2, nClasses=3)
 # Plot
 plot(d2c3$map)
 
-# Funzione freq: calcolare la frequenza dei pixel di una certa classe
+# Funzione freq: calcolare la frequenza dei pixel di una certa classe (d1c)
 freq(d1c$map)
 #value  count
 # [1,]     1 305319
@@ -100,5 +100,9 @@ prop1 <- freq(d1c$map)/s1 #(freq./totale)
 # Funzione per avere le info sul file
 prop1
 # value     count
-# [1,] 2.930042e-06 0.8945976 (% foresta)
-# [2,] 5.860085e-06 0.1054024 (% agricoltura)
+# [1,] 0.8945976 (% foresta: 0.8945976*100=89.45976)
+# [2,] 0.1054024 (% agricoltura)
+
+# Stesso procedimento per: d2c
+
+# dataframe
