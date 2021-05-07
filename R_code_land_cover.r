@@ -14,6 +14,12 @@ library(RStoolbox)
 # Funzione library per richiamare il pacchetto: ggplot2
 library(ggplot2)
 
+# defor1 (e2)
+# names: defor1_.1, defor1_.2, defor1_.3 
+# defor1_.1 = NIR
+# defor1_.2 = red
+# defor1_.3 = green
+
 # Funzione brick per importare i dati/immagine
 defor1 <- brick("defor1.jpg")
 # Funzione plotRGB: crea immagini multibanda
@@ -25,12 +31,15 @@ defor2 <- brick("defor2.jpg")
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
 # Funzione ggr: plotta file raster in differenti scale di grigio
+ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
+# Funzione ggr: plotta file raster in differenti scale di grigio
 ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
 # Funzione par: imposta più parametri grafici nella stessa immagine
 par(mfrow=c(1,2))
 plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
 
 # Multiframe con ggplot e gridExtra
 
