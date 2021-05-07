@@ -40,7 +40,6 @@ par(mfrow=c(1,2))
 plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
-
 # Multiframe con ggplot e gridExtra
 
 # Codice per installare pacchetto aggiuntivo: gridExtra (permette di utilizzare ggplot per dati raster)
@@ -54,3 +53,12 @@ p1 <- ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
 p2 <- ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
 # Funzione grid.arrange: determina N° di righe
 grid.arrange(p1, p2, nrow=2)
+
+
+## Proseguimento
+# Funzione unsuperClass: opera la classificazione non supervisionata (2 classi)
+d1c <- unsuperClass(defor1, nClasses=2)
+# Funzione per avere le info sul file
+d1c
+# Plot
+plot(d1c$map)
