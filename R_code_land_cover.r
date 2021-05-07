@@ -1,4 +1,5 @@
 # R_code_land_cover.r
+# Vedi CODICE (più specifico)
 
 # Indicare la cartella da cui estrarre i dati
 setwd("C:/lab/") # Windows
@@ -83,3 +84,21 @@ d2c3 <- unsuperClass(defor2, nClasses=3)
 # Plot
 plot(d2c3$map)
 
+# Funzione freq: calcolare la frequenza dei pixel di una certa classe
+freq(d1c$map)
+#value  count
+# [1,]     1 305319
+# [2,]     2  35973
+
+# Funzione: somma ( totale delle frequenze)
+s1 <- 305319 + 35973
+# Funzione per avere le info sul file
+s1 # = 341292
+
+# Funzione prop: calcolare la percentuale % (totale)
+prop1 <- freq(d1c$map)/s1 #(freq./totale)
+# Funzione per avere le info sul file
+prop1
+# value     count
+# [1,] 2.930042e-06 0.8945976 (% foresta)
+# [2,] 5.860085e-06 0.1054024 (% agricoltura)
