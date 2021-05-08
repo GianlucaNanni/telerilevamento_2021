@@ -104,5 +104,52 @@ prop1
 # [2,] 0.1054024 (% agricoltura)
 
 # Stesso procedimento per: d2c
+# Funzione freq: calcolare la frequenza dei pixel di una certa classe (d1c)
+freq(d2c$map)
+#value  count
+# [1,]     1 163495
+# [2,]     2 179231
 
-# dataframe
+# Funzione: somma ( totale delle frequenze)
+s2 <- 163495 + 179231
+# Funzione per avere le info sul file
+s2 # = 342726
+
+# Funzione prop: calcolare la percentuale % (totale)
+prop2 <- freq(d2c$map)/s2 #(freq./totale)
+# Funzione per avere le info sul file
+prop2
+# value     count
+# [1,] 0.4770429 (% foresta)
+# [2,] 0.5229571 (% agricoltura)
+
+
+
+# Generare Dataframe
+# Cover= prima colonna(variabile) fattori (valori categoriche: foresta, agricoltura)
+# Percent_1992= seconda colonna (valori percetuale 1992)
+# Percent_2006= terza colonna (valori percentuale 2006)
+cover <- c("Forest","Agriculture") #sono i dati della colonna cover
+percent_1992 <- c(89.45, 10.54) #nome 2°colonna, con % di prop1
+percent_2006 <- c(52.29, 47.70) #nome 3°colonna, con % di prop2
+
+# Funzione data.frame: crea un dataframe (tabella)
+percentages <- data.frame(cover, percent_1992, percent_2006)
+# Funzione per avere le info sul file
+percentages
+# cover percent_1992 percent_2006
+# 1      Forest        89.45        52.29
+# 2 Agriculture        10.54        47.70
+
+# Funzione ggplot: grafico
+# Funzione geom_bar: tipo di grafico
+p1 <- ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
+# Funzione per avere le info grafiche sul file
+p1
+
+# Funzione ggplot: grafico
+# Funzione geom_bar: tipo di grafico
+p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
+# Funzione per avere le info grafiche sul file
+p2
+
