@@ -153,3 +153,5 @@ p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(
 # Funzione per avere le info grafiche sul file
 p2
 
+# Funzione grid.arrange: grafici multipli in 1 pag.
+grid.arrange(p1, p2, nrow=1) #utile cambiare colori grafico a barre
