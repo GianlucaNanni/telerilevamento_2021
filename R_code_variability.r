@@ -15,3 +15,11 @@ library(ggplot2)
 # Funzione library per richiamare il pacchetto: gridExtra
 library(gridExtra)
 
+# Funzione brick per importare i dati/immagine
+sent <- brick("sentinel.png")
+# Funzione per avere le info sul file
+sent
+
+# Funzione plotRGB: crea immagini multibanda
+plotRGB(sent, r=2, g=1, b=3, stretch="lin")
+ 
