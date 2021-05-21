@@ -45,7 +45,7 @@ plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
 # Codice per installare pacchetto aggiuntivo: gridExtra (permette di utilizzare ggplot per dati raster)
 # install.packages("gridExtra") #già installato
-# Funzione library per richiamare il pacchetto:
+# Funzione library per richiamare il pacchetto: gridExtra
 library(gridExtra)
 
 # Plot defor1:
