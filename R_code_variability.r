@@ -120,6 +120,8 @@ geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa 
 scale_fill_viridis() + 
 # Funzione ggtitle: per aggiungere il titolo
 ggtitle("Standard deviation of PC1 by viridis colour scale")
+# Funzione per avere le info grafiche sul file
+p1
 
 # Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
 p2 <- ggplot() +
@@ -130,6 +132,8 @@ geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa 
 scale_fill_viridis(option = "magma")  + 
 # Funzione ggtitle: per aggiungere il titolo
 ggtitle("Standard deviation of PC1 by magma colour scale")
+# Funzione per avere le info grafiche sul file
+p2
 
 # Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
 p3 <- ggplot() +
@@ -140,7 +144,8 @@ geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa 
 scale_fill_viridis(option = "turbo")  +
 # Funzione ggtitle: per aggiungere il titolo
 ggtitle("Standard deviation of PC1 by turbo colour scale")
-
+# Funzione per avere le info grafiche sul filep3
+p3
 
 # Funzione grid.arrange: grafici multipli in 1 pag.
 grid.arrange(p1, p2, p3, nrow = 1)
