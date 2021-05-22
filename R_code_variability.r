@@ -27,3 +27,11 @@ plotRGB(sent, stretch="lin") # è uguale a: plotRGB(sent, r=1, g=2, b=3, stretch
 # Oppure: 
 plotRGB(sent, r=2, g=1, b=3, stretch="lin")
 
+# Compattare il dataset in: 1 strato
+# Calcolo 1° indice: nir
+nir <- sent$sentinel.1
+# Calcolo 2° indice: red
+red <- sent$sentinel.2
+
+# Calcolo indice di vegetazione ndvi= (NIR-red) / (NIR+red)
+ndvi <- (nir-red) / (nir+red)
