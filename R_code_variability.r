@@ -42,8 +42,10 @@ cl <- colorRampPalette(c('black','white','red','magenta','green'))(100)
 # Nuovo plot col cambio di colori
 plot(ndvi,col=cl)
 
-# Funziona focal: calcola i valori vicini a una finestra mobile (es. mediea e/o deviazione standard)
-# Funziona focal: calcolo deviazione standard (variabilità immagine)
+# Funzione: focal o rasterPCA per compattare i dati
+
+# Funzione focal: calcola i valori vicini a una finestra mobile (es. mediea e/o deviazione standard)
+# Funzione focal: calcolo deviazione standard (variabilità immagine)
 ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
 # focal: del dato (ndvi) # w: finestra mobile=matrice di dati # fun(funzione): calcola la deviazione standard (sd)
 # Plot:
@@ -53,10 +55,28 @@ clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red
 # Nuovo plot col cambio di colori
 plot(ndvisd3, col=clsd)
 
-# Funziona focal: calcolo media
+# Funzione focal: calcolo media
 ndvimean3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 # focal: del dato (ndvi) # w: finestra mobile=matrice di dati # fun(funzione): calcola la media (mean)
 # Cambio di colori
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 # Nuovo plot col cambio di colori
 plot(ndvimean3, col=clsd)
+
+# Cambio dimensioni griglia
+# Funziona focal: calcolo deviazione standard (variabilità immagine)
+ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd) # N° tot.(25) dispari per avere pixel centrale per il valore
+# Cambio di colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvisd5, col=clsd)
+
+
+# Funzione rasterPCA: analizza i componenti principali raster
+sentpca <- rasterPCA(sent)
+# Plot PCA:
+plot(sentpca$map)
+# Funzione per avere le info sul file
+sentpca
+# Funzione summary: mostra la variabilità iniziale delle prime componenti
+summary(sentpca$model) #mostra la proporzione di variabilità per ogni componente
