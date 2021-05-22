@@ -79,4 +79,14 @@ plot(sentpca$map)
 # Funzione per avere le info sul file
 sentpca
 # Funzione summary: mostra la variabilità iniziale delle prime componenti
-summary(sentpca$model) #mostra la proporzione di variabilità per ogni componente
+summary(sentpca$model)
+#la 1° componente(PC1) ha il 0.6736804% di proporzione di variabilità rispetto all'informazione originale
+
+# Associare 1° banda a oggetto (nome): PC1
+pc1 <- sentpca$map$PC1
+# Funzione focal: calcolo deviazione standard (variabilità immagine)
+pc1sd5 <- focal(pc1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+# Cambio di colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(pc1sd5, col=clsd)
