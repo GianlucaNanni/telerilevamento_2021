@@ -90,3 +90,18 @@ pc1sd5 <- focal(pc1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 # Nuovo plot col cambio di colori
 plot(pc1sd5, col=clsd)
+
+
+# Funzione source: richiama una parte di codice già creato
+source("source_test_lezione.r.txt")
+
+# Ricordarsi di immettere le medesime library
+library(raster)
+library(RStoolbox)
+library(ggplot2) # for ggplot plotting
+library(gridExtra) # for plotting ggplots together
+# Codice per installare pacchetto aggiuntivo: viridis
+# install.packages("viridis") #già installato
+library(viridis) # per mappa a colori ggplot
+# Funzione source: richiama una parte di codice già creato
+source("source_ggplot.r.txt")
