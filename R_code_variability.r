@@ -92,7 +92,7 @@ clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red
 plot(pc1sd5, col=clsd)
 
 
-# Funzione source: richiama una parte di codice già creato
+# Funzione source: carica una parte di codice dall'esterno
 source("source_test_lezione.r.txt")
 
 # Ricordarsi di immettere le medesime library
@@ -105,3 +105,42 @@ library(gridExtra) # for plotting ggplots together
 library(viridis) # per mappa a colori ggplot
 # Funzione source: richiama una parte di codice già creato
 source("source_ggplot.r.txt")
+
+
+# Plot dati ggplot
+# https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+# https://www.rdocumentation.org/packages/viridis/versions/0.6.1/topics/scale_fill_viridis
+
+# Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
+p1 <- ggplot() +
+# Funzione geom: definisce il tipo di geometria
+# Funzione geom_raster:noi usiamo dei pixel, quindi geometria raster
+geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa mappare(x,y,valore)
+# Funzione per usare la legenda standard viridis
+scale_fill_viridis() + 
+# Funzione ggtitle: per aggiungere il titolo
+ggtitle("Standard deviation of PC1 by viridis colour scale")
+
+# Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
+p2 <- ggplot() +
+# Funzione geom: definisce il tipo di geometria
+# Funzione geom_raster:noi usiamo dei pixel, quindi geometria raster
+geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa mappare(x,y,valore)
+# Funzione per usare la legenda standard viridis
+scale_fill_viridis(option = "magma")  + 
+# Funzione ggtitle: per aggiungere il titolo
+ggtitle("Standard deviation of PC1 by magma colour scale")
+
+# Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
+p3 <- ggplot() +
+# Funzione geom: definisce il tipo di geometria
+# Funzione geom_raster:noi usiamo dei pixel, quindi geometria raster
+geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa mappare(x,y,valore)
+# Funzione per usare la legenda standard viridis
+scale_fill_viridis(option = "turbo")  +
+# Funzione ggtitle: per aggiungere il titolo
+ggtitle("Standard deviation of PC1 by turbo colour scale")
+
+
+# Funzione grid.arrange: grafici multipli in 1 pag.
+grid.arrange(p1, p2, p3, nrow = 1)
