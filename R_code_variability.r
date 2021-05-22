@@ -20,6 +20,10 @@ sent <- brick("sentinel.png")
 # Funzione per avere le info sul file
 sent
 
+# NIR 1, RED 2 , GREEN 3
+# r=1, g=2, B=3
 # Funzione plotRGB: crea immagini multibanda
+plotRGB(sent, stretch="lin") # è uguale a: plotRGB(sent, r=1, g=2, b=3, stretch="lin") perchè è la composizone di default
+# Oppure: 
 plotRGB(sent, r=2, g=1, b=3, stretch="lin")
- 
+
