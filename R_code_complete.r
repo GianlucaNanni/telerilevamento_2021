@@ -10,7 +10,10 @@
 # 4. R_code_knitr.r
 # 5. R_code_multivariate_analysis.r
 # 6. R_code_classification.r
-
+# 7. ggplot (Contenuto in: # 9. R_code_land_cover.r)
+# 8. R_code_vegetation_indices.r
+# 9. R_code_land_cover.r
+# 10. R_code_variability.r
 
 # ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -658,5 +661,489 @@ plot(gcc4$map,col=clrpp)
 
 # ----------------------------------------------------------------------------------------------------------------------------------
 
-# 7. 
+# 7. ggplot
+# Contenuto in: # 9. R_code_land_cover.r
 
+
+library(raster)
+library(RStoolbox)
+library(ggplot2)
+library(gridExtra)
+
+setwd("~/lab/")
+
+p224r63 <- brick("p224r63_2011_masked.grd")
+
+ggRGB(p224r63,3,2,1, stretch="lin")
+ggRGB(p224r63,4,3,2, stretch="lin")
+
+p1 <- ggRGB(p224r63,3,2,1, stretch="lin")
+p2 <- ggRGB(p224r63,4,3,2, stretch="lin")
+
+grid.arrange(p1, p2, nrow = 2) # this needs gridExtra
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+
+# 8. R_code_vegetation_indices.r
+
+# R_code_vegetation_indices.r
+
+# Indicare la cartella da cui estrarre i dati
+setwd("C:/lab/") # Windows
+
+# Codice per installare pacchetto aggiuntivo: rasterdiv (div= NIR-red)
+# install.packages("rasterdiv") #già installato
+
+# Funzione library per richiamare il pacchetto: raster
+library(raster) #oppure: require(raster)
+
+# Funzione library per richiamare il pacchetto: rasterdiv
+library(rasterdiv)
+
+# Funzione library per richiamare il pacchetto: RStoolbox
+library(RStoolbox) # for vegetation indices calculation
+
+# Funzione brick per importare i dati/immagine
+defor1 <- brick("defor1.jpg")
+defor2 <- brick("defor2.jpg")
+
+# Funzione par: imposta più parametri grafici nella stessa immagine
+# 2 righe; 1 colonna
+# Funzione plotRGB: crea immagini multibanda con:
+# banda1: NIR (infrarosso)
+# banda2: red
+# banda3: green
+# par(mfrow=c(2,1))
+
+# Funzione plotRGB: defor1
+par(mfrow=c(2,1))
+plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
+# Funzione plotRGB: defor2
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+# Funzione per avere le info sul file: nomi bande
+defor1
+# Funzione per avere le info sul file: nomi bande
+defor2
+
+# Calcolo dell'indice di vegetazione dvi e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
+# Calcolo 1° indice: dvi1=NIR - red
+dvi1 <- defor1$defor1.1 - defor1$defor1.2
+# Plot:
+plot(dvi1)
+# Cambio di colori
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+# Nuovo plot col cambio di colori
+plot(dvi1, col=cl)
+# Nuovo plot col cambio di colori e titolo
+plot(dvi1, col=cl, main="DVI at time 1")
+
+# Calcolo 2° indice: dvi1=NIR - red
+dvi2 <- defor2$defor2.1 - defor2$defor2.2
+# Plot:
+plot(dvi2)
+# Cambio di colori
+cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+# Nuovo plot col cambio di colori
+plot(dvi2, col=cls)
+# Nuovo plot col cambio di colori e titolo
+plot(dvi2, col=cls, main="DVI at time 2")
+
+# Comparazione: analisi multitemporale dei 2 indici
+# Funzione par: imposta più parametri grafici nella stessa immagine
+# 2 righe; 1 colonna
+par(mfrow=c(2,1))
+plot(dvi1, col=cl, main="DVI at time 1")
+plot(dvi2, col=cls, main="DVI at time 2")
+
+# Differenza tra l°e 2° zona in tempi diverse
+difdvi <- dvi1 - dvi2
+# Cambio di colori per le differenze
+cld <- colorRampPalette(c('blue','white','red'))(100)
+# Nuovo plot col cambio di colori
+plot(difdvi, col=cld)
+
+
+# Calcolo dell'indice di vegetazione ndvi e comparazione tra l°e 2° immagine (defor1-defor2) per vederne la differenza
+# Indice ndvi: normalizza i valori sulla somma delle variabili
+# Calcolo 1° indice ndvi= (NIR-red) / (NIR+red)
+ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.2)
+# Cambio di colori
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvi1, col=cl)
+
+# Calcolo 2° indice ndvi= (NIR-red) / (NIR+red)
+ndvi2 <- (defor2$defor2.1 - defor2$defor2.2) / (defor2$defor2.1 + defor2$defor2.2)
+# Cambio di colori
+cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvi2, col=cls)
+
+
+# Funzione: spectralIndices (Pacchetto: RStoolbox), per calcolare tutti gli indici
+# Calcolo indici 1° immagine
+vi1 <- spectralIndices(defor1, green = 3, red = 2, nir = 1) #colori associati al N° della banda
+# Cambio di colori
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(vi1, col=cl)
+
+# Calcolo indici 2° immagine
+vi2 <- spectralIndices(defor2, green = 3, red = 2, nir = 1)
+# Cambio di colori
+cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+# Nuovo plot col cambio di colori
+plot(vi2, col=cls)
+
+# Differenza tra l°e 2° zona in tempi diverse
+difndvi <- ndvi1 - ndvi2
+# Cambio di colori per le differenze
+cld <- colorRampPalette(c('blue','white','red'))(100)
+# Nuovo plot col cambio di colori
+plot(difndvi, col=cld)
+
+
+## # Worldwide NDVI
+# Vediamo come l'indice di vegetaz., relazionato alle bande del NIR e red, varia nel pianeta
+
+# Funzione library per richiamare il pacchetto: rasterdiv
+library(rasterdiv)
+
+# Funzione library per richiamare il pacchetto: rasterVis
+library(rasterVis) #per la Funzione levelplot
+
+# Plot NDVI
+plot(copNDVI)
+# Più biomassa c'è e maggiore sarà l'indice
+
+# Funzione: cbind cambia dei valori (rimuovere l'acqua), significa che i pixel 253,254,255 sono trasformati in non valori (NA)
+# Funzione reclassify: riclassifica colori immagine 
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA)) #i : di 253:255 significa da 253 a 255, quindi 253,254,255 sono NA
+# Plot NDVI
+plot(copNDVI)
+
+# Funzione levelplot: disegna grafici di colore falso e di contorno
+levelplot(copNDVI)
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+
+# 9. R_code_land_cover.r
+
+# R_code_land_cover.r
+# Vedi CODICE (più specifico)
+
+# Indicare la cartella da cui estrarre i dati
+setwd("C:/lab/") # Windows
+
+# Funzione library per richiamare il pacchetto: raster
+library(raster) #oppure: require(raster)
+
+# Funzione library per richiamare il pacchetto: RStoolbox
+library(RStoolbox)
+
+# Codice per installare pacchetto aggiuntivo: ggplot2
+# install.packages("ggplot2") #già installato
+# Funzione library per richiamare il pacchetto: ggplot2
+library(ggplot2)
+
+# defor1 (e2)
+# names: defor1_.1, defor1_.2, defor1_.3 
+# defor1_.1 = NIR
+# defor1_.2 = red
+# defor1_.3 = green
+
+# Funzione brick per importare i dati/immagine
+defor1 <- brick("defor1.jpg")
+# Funzione plotRGB: crea immagini multibanda
+plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
+
+# Funzione brick per importare i dati/immagine
+defor2 <- brick("defor2.jpg")
+# Funzione plotRGB: crea immagini multibanda
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+# Funzione ggr: plotta file raster in differenti scale di grigio
+ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
+# Funzione ggr: plotta file raster in differenti scale di grigio
+ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+# Funzione par: imposta più parametri grafici nella stessa immagine
+par(mfrow=c(1,2))
+plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+
+# Multiframe con ggplot e gridExtra
+
+# Codice per installare pacchetto aggiuntivo: gridExtra (permette di utilizzare ggplot per dati raster)
+# install.packages("gridExtra") #già installato
+# Funzione library per richiamare il pacchetto: gridExtra
+library(gridExtra)
+
+# Plot defor1:
+p1 <- ggRGB(defor1, r=1, g=2, b=3, stretch="lin")
+# Plot defor2:
+p2 <- ggRGB(defor2, r=1, g=2, b=3, stretch="lin")
+# Funzione grid.arrange: determina N° di righe
+grid.arrange(p1, p2, nrow=2)
+
+
+## Proseguimento
+# defor1
+# Funzione unsuperClass: opera la classificazione non supervisionata (2 classi)
+d1c <- unsuperClass(defor1, nClasses=2)
+# Funzione per avere le info sul file
+d1c
+# Plot
+plot(d1c$map)
+# Funzione: set.seed(), permettere di ottenere risultati grafici (colori) inversi nel plot precedente (se serve)
+# classe 1: agricoltura
+# classe 2: forestra
+
+# defor2
+# Funzione unsuperClass: opera la classificazione non supervisionata (2 classi)
+d2c <- unsuperClass(defor2, nClasses=2)
+# Funzione per avere le info sul file
+d2c
+# Plot
+plot(d2c$map)
+# Funzione: set.seed(), permettere di ottenere risultati grafici (colori) inversi nel plot precedente (se serve)
+# classe 1: agricoltura
+# classe 2: forestra
+
+# Funzione unsuperClass: opera la classificazione non supervisionata (3 classi)
+d2c3 <- unsuperClass(defor2, nClasses=3)
+# Plot
+plot(d2c3$map)
+
+# Funzione freq: calcolare la frequenza dei pixel di una certa classe (d1c)
+freq(d1c$map)
+#value  count
+# [1,]     1 305319
+# [2,]     2  35973
+
+# Funzione: somma ( totale delle frequenze)
+s1 <- 305319 + 35973
+# Funzione per avere le info sul file
+s1 # = 341292
+
+# Funzione prop: calcolare la percentuale % (totale)
+prop1 <- freq(d1c$map)/s1 #(freq./totale)
+# Funzione per avere le info sul file
+prop1
+# value     count
+# [1,] 0.8945976 (% foresta: 0.8945976*100=89.45976)
+# [2,] 0.1054024 (% agricoltura)
+
+# Stesso procedimento per: d2c
+# Funzione freq: calcolare la frequenza dei pixel di una certa classe (d1c)
+freq(d2c$map)
+#value  count
+# [1,]     1 163495
+# [2,]     2 179231
+
+# Funzione: somma ( totale delle frequenze)
+s2 <- 163495 + 179231
+# Funzione per avere le info sul file
+s2 # = 342726
+
+# Funzione prop: calcolare la percentuale % (totale)
+prop2 <- freq(d2c$map)/s2 #(freq./totale)
+# Funzione per avere le info sul file
+prop2
+# value     count
+# [1,] 0.4770429 (% foresta)
+# [2,] 0.5229571 (% agricoltura)
+
+
+
+# Generare Dataframe
+# Cover= prima colonna(variabile) fattori (valori categoriche: foresta, agricoltura)
+# Percent_1992= seconda colonna (valori percetuale 1992)
+# Percent_2006= terza colonna (valori percentuale 2006)
+cover <- c("Forest","Agriculture") #sono i dati della colonna cover
+percent_1992 <- c(89.45, 10.54) #nome 2°colonna, con % di prop1
+percent_2006 <- c(52.29, 47.70) #nome 3°colonna, con % di prop2
+
+# Funzione data.frame: crea un dataframe (tabella)
+percentages <- data.frame(cover, percent_1992, percent_2006)
+# Funzione per avere le info sul file
+percentages
+# cover percent_1992 percent_2006
+# 1      Forest        89.45        52.29
+# 2 Agriculture        10.54        47.70
+
+# Funzione ggplot: grafico
+# Funzione geom_bar: tipo di grafico
+p1 <- ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
+# Funzione per avere le info grafiche sul file
+p1
+
+# Funzione ggplot: grafico
+# Funzione geom_bar: tipo di grafico
+p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
+# Funzione per avere le info grafiche sul file
+p2
+
+# Funzione grid.arrange: grafici multipli in 1 pag.
+grid.arrange(p1, p2, nrow=1) #utile cambiare colori grafico a barre
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+
+# 10. R_code_variability.r
+
+# R_code_variability.r
+
+# Indicare la cartella da cui estrarre i dati
+setwd("C:/lab/") # Windows
+
+# Funzione library per richiamare il pacchetto: raster
+library(raster) #oppure: require(raster)
+
+# Funzione library per richiamare il pacchetto: RStoolbox
+library(RStoolbox)
+
+# Funzione library per richiamare il pacchetto: ggplot2
+library(ggplot2)
+
+# Funzione library per richiamare il pacchetto: gridExtra
+library(gridExtra)
+
+# Funzione brick per importare i dati/immagine
+sent <- brick("sentinel.png")
+# Funzione per avere le info sul file
+sent
+
+# NIR 1, RED 2 , GREEN 3
+# r=1, g=2, B=3
+# Funzione plotRGB: crea immagini multibanda
+plotRGB(sent, stretch="lin") # è uguale a: plotRGB(sent, r=1, g=2, b=3, stretch="lin") perchè è la composizone di default
+# Oppure: 
+plotRGB(sent, r=2, g=1, b=3, stretch="lin")
+
+# Compattare il dataset in: 1 strato
+# Associare 1° banda a oggetto (nome): nir
+nir <- sent$sentinel.1
+# Associare 2° banda a oggetto (nome): red
+red <- sent$sentinel.2
+
+# Calcolo indice di vegetazione ndvi= (NIR-red) / (NIR+red)
+ndvi <- (nir-red) / (nir+red)
+# Plot:
+plot(ndvi)
+# Cambio di colori
+cl <- colorRampPalette(c('black','white','red','magenta','green'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvi,col=cl)
+
+# Funzione: focal o rasterPCA per compattare i dati
+
+# Funzione focal: calcola i valori vicini a una finestra mobile (es. mediea e/o deviazione standard)
+# Funzione focal: calcolo deviazione standard (variabilità immagine)
+ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+# focal: del dato (ndvi) # w: finestra mobile=matrice di dati # fun(funzione): calcola la deviazione standard (sd)
+# Plot:
+plot(ndvisd3)
+# Cambio di colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvisd3, col=clsd)
+
+# Funzione focal: calcolo media
+ndvimean3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+# focal: del dato (ndvi) # w: finestra mobile=matrice di dati # fun(funzione): calcola la media (mean)
+# Cambio di colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvimean3, col=clsd)
+
+# Cambio dimensioni griglia
+# Funziona focal: calcolo deviazione standard (variabilità immagine)
+ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd) # N° tot.(25) dispari per avere pixel centrale per il valore
+# Cambio di colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(ndvisd5, col=clsd)
+
+
+# Funzione rasterPCA: analizza i componenti principali raster
+sentpca <- rasterPCA(sent)
+# Plot PCA:
+plot(sentpca$map)
+# Funzione per avere le info sul file
+sentpca
+# Funzione summary: mostra la variabilità iniziale delle prime componenti
+summary(sentpca$model)
+#la 1° componente(PC1) ha il 0.6736804% di proporzione di variabilità rispetto all'informazione originale
+
+# Associare 1° banda a oggetto (nome): PC1
+pc1 <- sentpca$map$PC1
+# Funzione focal: calcolo deviazione standard (variabilità immagine)
+pc1sd5 <- focal(pc1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+# Cambio di colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(pc1sd5, col=clsd)
+
+
+# Funzione source: carica una parte di codice dall'esterno
+source("source_test_lezione.r.txt")
+
+# Ricordarsi di immettere le medesime library
+library(raster)
+library(RStoolbox)
+library(ggplot2) # for ggplot plotting
+library(gridExtra) # for plotting ggplots together
+# Codice per installare pacchetto aggiuntivo: viridis
+# install.packages("viridis") #già installato
+library(viridis) # per mappa a colori ggplot
+# Funzione source: richiama una parte di codice già creato
+source("source_ggplot.r.txt")
+
+
+# Plot dati ggplot
+# https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+# https://www.rdocumentation.org/packages/viridis/versions/0.6.1/topics/scale_fill_viridis
+
+# Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
+p1 <- ggplot() +
+# Funzione geom: definisce il tipo di geometria
+# Funzione geom_raster:noi usiamo dei pixel, quindi geometria raster
+geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa mappare(x,y,valore)
+# Funzione per usare la legenda standard viridis
+scale_fill_viridis() + 
+# Funzione ggtitle: per aggiungere il titolo
+ggtitle("Standard deviation of PC1 by viridis colour scale")
+# Funzione per avere le info grafiche sul file
+p1
+
+# Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
+p2 <- ggplot() +
+# Funzione geom: definisce il tipo di geometria
+# Funzione geom_raster:noi usiamo dei pixel, quindi geometria raster
+geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa mappare(x,y,valore)
+# Funzione per usare la legenda standard viridis
+scale_fill_viridis(option = "magma")  + 
+# Funzione ggtitle: per aggiungere il titolo
+ggtitle("Standard deviation of PC1 by magma colour scale")
+# Funzione per avere le info grafiche sul file
+p2
+
+# Funzione ggplot: crea una nuova finestra (vuota) e aggiunge dei blocchi (+)
+p3 <- ggplot() +
+# Funzione geom: definisce il tipo di geometria
+# Funzione geom_raster:noi usiamo dei pixel, quindi geometria raster
+geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) + #mapping= cosa mappare(x,y,valore)
+# Funzione per usare la legenda standard viridis
+scale_fill_viridis(option = "turbo")  +
+# Funzione ggtitle: per aggiungere il titolo
+ggtitle("Standard deviation of PC1 by turbo colour scale")
+# Funzione per avere le info grafiche sul filep3
+p3
+
+# Funzione grid.arrange: grafici multipli in 1 pag.
+grid.arrange(p1, p2, p3, nrow = 1)
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+
+# 11. 
