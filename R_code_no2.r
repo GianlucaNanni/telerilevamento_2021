@@ -39,6 +39,29 @@ plot(EN01, col=cls, main="NO2 in January")
 plot(EN13, col=cls, main="NO2 in March")
 plot(ENdif, col=cls, main="Difference (January - March)")
 
+# 7. Importare intero set (13 immagini)
+# Importare tutte le immagini INSIEME
+# Funzione list.files: crea lista di file per la funzione lapply
+rlist <- list.files(pattern="EN")
+# Funzione per avere le info sul file
+rlist
+# Funzione lapply: applica a lista di file una funzione (raster) 
+import <- lapply(rlist,raster)
+# Funzione per avere le info sul file
+import
+# Funzione stack: raggruppa e rinomina file raster separati
+EN <- stack(import)
+# Funzione per avere le info sul file
+EN
+# Plot ColorRampPalette
+plot(EN, col=cls)
 
-
-
+# 8. Replicare il plot dell'immagine 1 e 13 usando lo: stack
+# Funzione per avere le info sul file
+EN
+# Funzione par: imposta più parametri grafici nella stessa immagine
+# $: lega il dataset con le singole bande
+par(mfrow=c(2,1))
+plot(EN$EN_0001, col=cls)
+plot(EN$EN_0013, col=cls)
+# In questo modo le immagini sono prese dallo 'stack' e non dall'importazione iniziale
