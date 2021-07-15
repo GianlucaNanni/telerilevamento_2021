@@ -113,7 +113,7 @@ click(defor2, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
 band <- c(1,2,3)
 time1 <- c(208,13,29)
 time2 <- c(184,182,159)
- # Funzione data.frame: crea un dataframe (tabella)
+# Funzione data.frame: crea un dataframe (tabella)
 spectralst <- data.frame(band, time1, time2)
 # Funzione per avere le info sul file
 spectralst
@@ -121,12 +121,39 @@ spectralst
 #1    1   208   184
 #2    2    13   182
 #3    3    29   159
-
 # Plot delle firme spettrali
 # Funzione ggplot: determina l'estetica del grafico
 # Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y 
 # Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
-ggplot(spectrals, aes(x=band)) + geom_line(aes(y=time1), color="red") + geom_line(aes(y=time2), color="gray") + labs(x="band",y="reflectance")
+ggplot(spectrals, aes(x=band)) +
+ geom_line(aes(y=time1), color="red") +
+ geom_line(aes(y=time2), color="gray") +
+ labs(x="band",y="reflectance")
 
-
-
+# Definire le colonne del dataset
+band <- c(1,2,3)
+time1pixel1 <- c(208,13,29)
+time1pixel2 <- c(190,8,20)
+time2pixel1 <- c(184,182,159)
+time2pixel2 <- c(141,169,146)
+# ecc.. fino time1/2pixel5 -------> meglio rinominare cosi quando si deve fare comparazione, è più chiaro
+# Funzione data.frame: crea un dataframe (tabella)
+spectralst <- data.frame(band, time1, time2, time1pixel2, time2pixel2)
+# Funzione per avere le info sul file
+spectralst
+#  band time1 time2 time1pixel2 time2pixel2
+#1    1   208   184         190         141
+#2    2    13   182           8         169
+#3    3    29   159          20         146
+# Plot delle firme spettrali
+# Funzione ggplot: determina l'estetica del grafico
+# Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y 
+# Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
+# plot the sepctral signatures
+# plot the sepctral signatures
+ggplot(spectralst, aes(x=band)) +
+ geom_line(aes(y=time1), color="red") +
+ geom_line(aes(y=time1pixel2), color="red") +
+ geom_line(aes(y=time2), color="gray") +
+ geom_line(aes(y=time2pixel2), color="gray") +
+ labs(x="band",y="reflectance")
