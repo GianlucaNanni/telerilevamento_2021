@@ -30,8 +30,10 @@ click(defor2, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
 # Cliccare sulla mappa nella parte ancora vegetata (rosso) e sul fiume, in R appaiono le info definite con la funzione: click (vedi riga sopra)
 # Risultati:
 #         x     y   cell defor2.1 defor2.2 defor2.3
-#   1 103.5 203.5 196562      192       11       28
+#   1 103.5 203.5 196562      192       11       28   # valori parte vegetata
 #         x    y   cell defor2.1 defor2.2 defor2.3
-#    1 399.5 89.5 278596       32       84      141
+#    1 399.5 89.5 278596       32       84      141   # valori parte fluviale
+
+# Funzione data.frame: crea un dataframe (tabella)
 
 
