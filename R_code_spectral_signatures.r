@@ -157,3 +157,54 @@ ggplot(spectralst, aes(x=band)) +
  geom_line(aes(y=time2), color="gray") +
  geom_line(aes(y=time2pixel2), color="gray") +
  labs(x="band",y="reflectance")
+
+#nel grafico vediamo come il pixel del time1(time1pixel1) c'è la tipica firma di un pixel vegetato, mentre nel time2(time2pixel1) è molto cambiata.
+#questo procedimento normalmente si fa con moltissimi pixel. si usa una funzione per la generazione dei punti random e poi un'altra per estrarre da tutti i valori delle bande
+
+
+
+# Ripetiamo lo stesso esercizio con immagine prese dall'Earth observatory
+# https://earthobservatory.nasa.gov/blogs/earthmatters/2021/06/15/june-puzzler-7/
+
+# Funzione brick per importare dalla cartella i dati/immagine: importa tutte le bande
+eo <- brick("june_puzzler.jpg")
+
+# Funzione plotRGB: eo
+plotRGB(eo, r=1, g=2, b=3, stretch="hist")
+
+# Bisogna avere la mappa fatta con plotRGB aperta sotto
+# Funzione: click, usa immagine plotRGB per creare le firme spettrali # Serve pacchetto: rgdal
+click(eo, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+# Risultati:
+#      x     y  cell june_puzzler.1 june_puzzler.2 june_puzzler.3
+#1 248.5 423.5 40569            215            184              5
+#      x     y   cell june_puzzler.1 june_puzzler.2 june_puzzler.3
+#1 234.5 178.5 216955              8            136              0
+#      x     y   cell june_puzzler.1 june_puzzler.2 june_puzzler.3
+#1 229.5 193.5 206150             17              7              6
+
+# Definire le colonne del dataset
+band <- c(1,2,3)
+stratum1 <- c(215,184,5)
+stratum2 <- c(8,136,0)
+stratum3 <- c(17,7,6)
+# Funzione data.frame: crea un dataframe (tabella)
+spectralsg <- data.frame(band, stratum1, stratum2, stratum3)
+# Funzione per avere le info sul file
+spectralsg
+#  band stratum1 stratum2 stratum3
+#1    1      215        8       17
+#2    2      184      136        7
+#3    3        5        0        6
+
+# Plot delle firme spettrali
+# Funzione ggplot: determina l'estetica del grafico
+# Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y 
+# Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
+ggplot(spectralsg, aes(x=band))+
+geom_line(aes(y=stratum1), col="yellow")+
+geom_line(aes(y=stratum2), col="green")+
+geom_line(aes(y=stratum3), col="blue")+
+labs(x="band", y="reflectance")
+
+#tutto questo processo serve ad identificare delle classi con sui dividere/classificare la nostra immagine.
