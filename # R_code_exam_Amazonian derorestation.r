@@ -39,6 +39,7 @@ cls<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
 # Nuovo levelplot col cambio di colori, nome e titolo
 levelplot(TGa,col.regions=cls, main="Variation forest cover in time", names.attr=c("July 2000","August 2004", "July 2008", "July 2012"))
 
+##
 
 # Importazione delle singole immagini per effettuare comparazioni
 # Funzione: brick, importa i singoli file
@@ -118,18 +119,35 @@ ggplot(spectrals, aes(x=bande)) + geom_line(aes(y=foresta), color="green") + geo
 
 
 # Definire le colonne del dataset
-band <- c(1,2,3)
-time1pixel1 <- c(208,13,29)
-time1pixel2 <- c(190,8,20)
-time2pixel1 <- c(184,182,159)
-time2pixel2 <- c(141,169,146)
+bande <- c(1,2,3)
+foresta1pixel1 <- c(38,63,44)
+coltivazioni1pixel2 <- c(140,119,90)
+foresta2pixel1 <- c(33,46,29)
+coltivazioni2pixel2 <- c(185,150,110)
+# Funzione data.frame: crea un dataframe (tabella)
+spectralst <- data.frame(bande, foresta1pixel1, coltivazioni1pixel2, foresta2pixel1, coltivazioni2pixel2)
+# Funzione per avere le info sul file
+spectralst
+#   bande foresta1pixel1 coltivazioni1pixel2 foresta2pixel1 coltivazioni2pixel2
+# 1     1             38                 140             33                 185
+# 2     2             63                 119             46                 150
+# 3     3             44                  90             29                 110
+# Plot delle firme spettrali
+# Funzione ggplot: determina l'estetica del grafico
+# Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y 
+# Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
+ggplot(spectralst, aes(x=bande)) +
+ geom_line(aes(y=foresta1pixel1), color="red") +
+ geom_line(aes(y=coltivazioni1pixel2), color="red") +
+ geom_line(aes(y=foresta2pixel1), color="gray") +
+ geom_line(aes(y=coltivazioni2pixel2), color="gray") +
+ labs(x="bande",y="reflectance")
+
+#nel grafico vediamo come il pixel del time1(time1pixel1) c'è la tipica firma di un pixel vegetato, mentre nel time2(time2pixel1) è molto cambiata.
+#questo procedimento normalmente si fa con moltissimi pixel. si usa una funzione per la generazione dei punti random e poi un'altra per estrarre da tutti i valori delle bande
 
 
-
-
-
-
-
+##
 
 
 # Funzione: spectralIndices (Pacchetto: RStoolbox), per calcolare tutti gli indici
@@ -148,7 +166,7 @@ cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 plot(vi2, col=cls)
 
 
-
+##
 
 
 # Plot di tutte le correlazioni tra bande di un dataset (matrice di scatterplot di dati, non immagini)
@@ -156,13 +174,13 @@ plot(vi2, col=cls)
 pairs(TGa)
 
 
-
+##
 
 
 # differenza copertura 2000-2012
 # deviazione standard? dvi/ndvi?
-# concludere con ggplot
-
+# concludere con ggplot (anzi vedere)
+# ordinare (##)
 
 
 ---------------------------------------------------------------------------------------
