@@ -1,5 +1,6 @@
 # R_code_exam_Amazonian derorestation.r
 # Cambiamento della forestazione Amazzonica tra il 2000 e 2012 (2000-2004-2008-2012)
+# https://earthobservatory.nasa.gov/world-of-change/Deforestation
 
 # Indicare la cartella da cui estrarre i dati
 setwd("C:/lab/amazonian") # Windows
@@ -47,7 +48,7 @@ cls<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
 levelplot(TGa,col.regions=cls, main="Variation forest cover in time", names.attr=c("July 2000","August 2004", "July 2008", "July 2012"))
 
 
-
+# differenza copertura 2000-2012
 
 
 
