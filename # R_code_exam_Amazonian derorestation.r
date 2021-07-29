@@ -48,6 +48,17 @@ cls<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
 levelplot(TGa,col.regions=cls, main="Variation forest cover in time", names.attr=c("July 2000","August 2004", "July 2008", "July 2012"))
 
 
+# Funzione freq: calcolare la frequenza dei pixel di una certa classe (d1c)
+freq(TGa$map)
+#value  count
+# [1,]     1 305319
+# [2,]     2  35973
+
+
+
+
+
+
 # differenza copertura 2000-2012
 
 
