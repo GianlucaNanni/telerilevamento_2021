@@ -52,20 +52,38 @@ a_d_2012 <- brick("amazon_deforestation_2012.jpg")
 plotRGB(a_d_2000, r=1, g=2, b=3, stretch="lin") # "lin": lineare, amplia i valori
 
 # Bisogna avere la mappa fatta con plotRGB aperta sotto
-# Funzione: click, usa immagine plotRGB per creare le firme spettrali # Serve pacchetto: rgdal
+# Funzione: click, usa immagine plotRGB per creare le firme spettrali 
 click(a_d_2000, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
 
-      x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
-1 335.5 266.5 153696                          43                          64                          47
-                       
-      x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
-1 430.5 255.5 161711                         134                         117                          89
+#       x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
+# 1 335.5 266.5 153696                          43                          64                          47   # valori parte forestale
+#       x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
+# 1 430.5 255.5 161711                         134                         117                          89   # valori parte coltivata
                            
-      x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
-1 335.5 266.5 153696                          43                          64                          47
-2 430.5 255.5 161711                         134                         117                          89
-  
-                       
+
+# Definire le colonne del dataset
+bande <- c(1,2,3)
+foresta <- c(43,64,47)
+coltivazioni <- c(134,117,89)
+
+# Funzione data.frame: crea un dataframe (tabella)
+spectrals <- data.frame(bande, foresta, coltivazioni)
+# Funzione per avere le info sul file
+spectrals
+#   bande foresta coltivazioni
+# 1     1      43          134
+# 2     2      64          117
+# 3     3      47           89
+
+# Plot delle firme spettrali
+# Funzione ggplot: determina l'estetica del grafico
+# Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y
+# Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
+ggplot(spectrals, aes(x=bande)) + geom_line(aes(y=foresta), color="green") + geom_line(aes(y=coltivazioni), color="red") + labs(x="bande", y="reflectance")
+
+
+
+
 
 
 
