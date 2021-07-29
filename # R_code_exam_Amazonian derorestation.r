@@ -8,6 +8,7 @@ setwd("C:/lab/amazonian") # Windows
 require(raster)
 library(RStoolbox) # for vegetation indices calculation
 library(ggplot2)
+library(rasterVis)
 
 # Importare i file tutti insieme (invece che singolarmente)
 # Funzione list.files: crea lista di file per la funzione lapply 
@@ -38,11 +39,12 @@ ggRGB(TGa, r=1, g=2, b=3, stretch="lin") # "lin": lineare, amplia i valori
 ggRGB(TGa, r=1, g=2, b=3, stretch="hist")  # "hist": istogramma, usa curva logistica che aumenta artificialmente la pendenza della curva, aumentando le differenze tra i valori (colori)
 
 
-
-
-
-
-
+# Funzione levelplot: disegna grafici di colore falso e di contorno con una singola legenda
+levelplot(TGa)
+# Cambio di colori a piacimento
+cls<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
+# Nuovo levelplot col cambio di colori, nome e titolo
+levelplot(TGa,col.regions=cls, main="Variation forest cover in time", names.attr=c("July 2000","August 2004", "July 2008", "July 2012"))
 
 
 
