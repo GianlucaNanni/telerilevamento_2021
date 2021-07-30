@@ -1,5 +1,5 @@
-# R_code_exam_Amazonian derorestation.r
-# Cambiamento della forestazione Amazzonica tra il 2000 e 2012 (2000-2004-2008-2012)
+# R_code_exam.r
+# Deforestazione Amazzonica tra il 2000 e 2012 (2000-2004-2008-2012)
 # https://earthobservatory.nasa.gov/world-of-change/Deforestation
 
 # Indicare la cartella da cui estrarre i dati
@@ -38,6 +38,14 @@ levelplot(TGa)
 cls<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
 # Nuovo levelplot col cambio di colori, nome e titolo
 levelplot(TGa,col.regions=cls, main="Variation forest cover in time", names.attr=c("July 2000","August 2004", "July 2008", "July 2012"))
+
+
+##
+
+
+# Plot di tutte le correlazioni tra bande di un dataset (matrice di scatterplot di dati, non immagini)
+# La tabella riporta in diagonale le bande (sono le variabili), l'indice di correlazione varia da 0(negativo) a 1 (positivo)
+pairs(TGa)
 
 ##
 
@@ -150,7 +158,7 @@ ggplot(spectralst, aes(x=bande)) +
 ##
 
 
-# Funzione: spectralIndices (Pacchetto: RStoolbox), per calcolare tutti gli indici
+# Funzione: spectralIndices, per calcolare gli indici multi-spettrali
 # Calcolo indici 1° immagine
 vi1 <- spectralIndices(a_d_2000, green = 3, red = 2, nir = 1) #colori associati al N° della banda
 # Cambio di colori
@@ -166,62 +174,16 @@ cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 plot(vi2, col=cls)
 
 
-##
 
-
-# Plot di tutte le correlazioni tra bande di un dataset (matrice di scatterplot di dati, non immagini)
-# La tabella riporta in diagonale le bande (sono le variabili), l'indice di correlazione varia da 0(negativo) a 1 (positivo)
-pairs(TGa)
 
 
 ##
 
 
-# differenza copertura 2000-2012
+
 # deviazione standard? dvi/ndvi?
-# concludere con ggplot (anzi vedere)
+
 # ordinare (##)
 
 
 ---------------------------------------------------------------------------------------
-
-
-
-
-# 8. R_code_vegetation_indices.r
-
-###############
-# Calcolo dell'indice di vegetazione dvi e comparazione tra immagine del 2000 e immagine del 2012 per vederne la differenza
-# Calcolo 1° indice: dvi1=NIR - red
-dvi1 <- a_d_2000$amazon_deforestation_2000.1 - a_d_2000$ amazon_deforestation_2000.2
-# Cambio di colori
-cl <- colorRampPalette(c('blue','yellow','red','black'))(100)
-# Nuovo plot col cambio di colori e titolo
-plot(dvi1, col=cl, main="DVI at time 1")
-
-# Calcolo 2° indice: dvi1=NIR - red
-dvi2 <- a_d_2012$amazon_deforestation_2012.1 - a_d_2012$amazon_deforestation_2012.2
-# Plot:
-plot(dvi2)
-# Cambio di colori
-clh <- colorRampPalette(c('blue','yellow','red','black'))(100)
-# Nuovo plot col cambio di colori
-plot(dvi2, col=clh)
-# Nuovo plot col cambio di colori e titolo
-plot(dvi2, col=clh, main="DVI at time 2")
-
-# Comparazione: analisi multitemporale dei 2 indici
-# Funzione par: imposta più parametri grafici nella stessa immagine
-# 2 righe; 1 colonna
-par(mfrow=c(2,1))
-plot(dvi1, col=cl, main="DVI at time 1")
-plot(dvi2, col=clh, main="DVI at time 2")
-##############################
-
-# Differenza tra l°e 2° zona in tempi diverse
-difdvi <- dvi1 - dvi2
-# Cambio di colori per le differenze
-cld <- colorRampPalette(c('blue','white','red'))(100)
-# Nuovo plot col cambio di colori
-plot(difdvi, col=cld)
-
