@@ -65,31 +65,37 @@ plotRGB(a_d_2000, r=1, g=2, b=3, stretch="lin") # "lin": lineare, amplia i valor
 # Bisogna avere la mappa fatta con plotRGB aperta sotto
 # Funzione: click, usa immagine plotRGB per creare le firme spettrali 
 click(a_d_2000, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
-               
+
 #       x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
-# 1 342.5 259.5 158743                          38                          63                          44  # valori parte forestale 
-#       x     y   cell amazon_deforestation_2000.1 amazon_deforestation_2000.2 amazon_deforestation_2000.3
-# 1 428.5 255.5 161709                         140                         119                          90  # valori parte coltivata
- 
+# 1 342.5 362.5  84583                          41                          64                          48 # valori parte forestale
+# 2 341.5 257.5 160182                          38                          61                          43 # valori parte forestale
+# 3 426.5 343.5  98347                          46                          70                          54 # valori parte forestale
+  
 # Definire le colonne del dataset
 bande <- c(1,2,3)
-foresta <- c(38,63,44)
-coltivazioni <- c(140,119,90)
+area_foresta01 <- c(41,64,48)
+area_foresta02 <- c(38,61,43)
+area_foresta03 <- c(46,70,54)
 
 # Funzione data.frame: crea un dataframe (tabella)
-spectrals <- data.frame(bande, foresta, coltivazioni)
+spectrals <- data.frame(bande, area_foresta01, area_foresta02, area_foresta03)
 # Funzione per avere le info sul file
 spectrals
-#   bande foresta coltivazioni
-# 1     1      38          140
-# 2     2      53          119
-# 3     3      44           90
+#  bande area_foresta01 area_foresta02 area_foresta03
+#      1             41             38             46
+#      2             64             61             70
+#      3             48             43             54
 
 # Plot delle firme spettrali
 # Funzione ggplot: determina l'estetica del grafico
 # Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y
 # Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
-ggplot(spectrals, aes(x=bande)) + geom_line(aes(y=foresta), color="green") + geom_line(aes(y=coltivazioni), color="red") + labs(x="bande", y="reflectance")
+ggplot(spectrals, aes(x=bande)) +
+ geom_line(aes(y=area_foresta01), color="green") +
+ geom_line(aes(y=area_foresta02), color="red") +
+ geom_line(aes(y=area_foresta03), color="blue") +
+ labs(x="bande",y="reflectance")
+
 
 
 
@@ -99,57 +105,67 @@ plotRGB(a_d_2012, r=1, g=2, b=3, stretch="lin") # "lin": lineare, amplia i valor
 
 # Bisogna avere la mappa fatta con plotRGB aperta sotto
 # Funzione: click, usa immagine plotRGB per creare le firme spettrali 
-click(a_d_2012, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow") 
+click(a_d_2012, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")    
 
-#       x     y   cell amazon_deforestation_2012.1 amazon_deforestation_2012.2 amazon_deforestation_2012.3
-# 1 338.5 260.5 158019                          33                          46                          29   # valori parte forestale                        
-#       x     y   cell amazon_deforestation_2012.1 amazon_deforestation_2012.2 amazon_deforestation_2012.3
-# 1 432.5 255.5 161713                         185                         150                         110  # valori parte coltivata
-   
+#      x     y   cell amazon_deforestation_2012.1 amazon_deforestation_2012.2 amazon_deforestation_2012.3
+#  347.5 359.5  86748                          41                          67                          40 # valori parte forestale
+#  432.5 340.5 100513                         126                         112                          86 # valori parte coltivata
+#  347.5 259.5 158748                          43                          66                          46 # valori parte forestale
+
 # Definire le colonne del dataset
 bande <- c(1,2,3)
-foresta <- c(33,46,29)
-coltivazioni <- c(185,150,110)
+area_foresta01 <- c(41,67,44)
+area_foresta02 <- c(126,112,86)
+area_foresta03 <- c(43,66,46)
 
 # Funzione data.frame: crea un dataframe (tabella)
-spectrals <- data.frame(bande, foresta, coltivazioni)
+spectralsa <- data.frame(bande, area_foresta01, area_foresta02, area_foresta03)
 # Funzione per avere le info sul file
-spectrals
-#   bande foresta coltivazioni
-# 1     1      33          185
-# 2     2      46          150
-# 3     3      29          110
+spectralsa
+#  bande area_foresta01 area_foresta02 area_foresta03
+#      1             41            126             43
+#      2             67            112             66
+#      3             44             86             46
 
 # Plot delle firme spettrali
 # Funzione ggplot: determina l'estetica del grafico
 # Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y
 # Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
-ggplot(spectrals, aes(x=bande)) + geom_line(aes(y=foresta), color="green") + geom_line(aes(y=coltivazioni), color="red") + labs(x="bande", y="reflectance")
+ggplot(spectralsa, aes(x=bande)) +
+ geom_line(aes(y=area_foresta01), color="green") +
+ geom_line(aes(y=area_foresta02), color="black") +
+ geom_line(aes(y=area_foresta03), color="blue") +
+ labs(x="bande",y="reflectance")
+
 
 
 # Definire le colonne del dataset
 bande <- c(1,2,3)
-foresta1pixel1 <- c(38,63,44)
-coltivazioni1pixel2 <- c(140,119,90)
-foresta2pixel1 <- c(33,46,29)
-coltivazioni2pixel2 <- c(185,150,110)
+area_foresta01_anno2000 <- c(41,64,48)
+area_foresta01_anno2012 <- c(41,67,44)
+area_foresta02_anno2000 <- c(38,61,43)
+area_foresta02_anno2012 <- c(126,112,86)
+area_foresta03_anno2000 <- c(46,70,54)
+area_foresta03_anno2012 <- c(43,66,46)
 # Funzione data.frame: crea un dataframe (tabella)
-spectralst <- data.frame(bande, foresta1pixel1, coltivazioni1pixel2, foresta2pixel1, coltivazioni2pixel2)
+spectralst <- data.frame(bande, area_foresta01_anno2000, area_foresta01_anno2012, area_foresta02_anno2000, area_foresta02_anno2012, area_foresta03_anno2000, area_foresta03_anno2012)
 # Funzione per avere le info sul file
 spectralst
-#   bande foresta1pixel1 coltivazioni1pixel2 foresta2pixel1 coltivazioni2pixel2
-# 1     1             38                 140             33                 185
-# 2     2             63                 119             46                 150
-# 3     3             44                  90             29                 110
+#  bande area_foresta01_anno2000 area_foresta01_anno2012 area_foresta02_anno2000 area_foresta02_anno2012 area_foresta03_anno2000 area_foresta03_anno2012
+#      1                      41                      41                      38                     126                      46                      43
+#      2                      64                      67                      61                     112                      70                      66
+#      3                      48                      44                      43                      86                      54                      46
 # Plot delle firme spettrali
 # Funzione ggplot: determina l'estetica del grafico
 # Funzione geom_line: connette le osservazioni a seconda del dato che è sulla X/Y 
 # Funzione labs: modifica le etichette degli assi, le legende e il plottaggio
 ggplot(spectralst, aes(x=bande)) +
- geom_line(aes(y=foresta1pixel1), color="red") +
- geom_line(aes(y=coltivazioni1pixel2), color="red") +
- geom_line(aes(y=foresta2pixel1), color="gray") +
- geom_line(aes(y=coltivazioni2pixel2), color="gray") +
+ geom_line(aes(y=area_foresta01_anno2000), color="lightgreen") +
+ geom_line(aes(y=area_foresta01_anno2012), color="green") +
+ geom_line(aes(y=area_foresta02_anno2000), color="white") +
+ geom_line(aes(y=area_foresta02_anno2012), color="black") +
+ geom_line(aes(y=area_foresta03_anno2000), color="blue") +
+ geom_line(aes(y=area_foresta03_anno2012), color="lightblue") +
  labs(x="bande",y="reflectance")
 
 #nel grafico vediamo come il pixel del time1(time1pixel1) c'è la tipica firma di un pixel vegetato, mentre nel time2(time2pixel1) è molto cambiata.
