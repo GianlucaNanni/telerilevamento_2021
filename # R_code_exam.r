@@ -46,6 +46,7 @@ levelplot(TGa,col.regions=cls, main="Variation forest cover in time", names.attr
 # Plot di tutte le correlazioni tra bande di un dataset (matrice di scatterplot di dati, non immagini)
 # La tabella riporta in diagonale le bande (sono le variabili), l'indice di correlazione varia da 0(negativo) a 1 (positivo)
 pairs(TGa)
+# Indice di correlazione: più le bande sono correlate e maggiore sarà la dimensione dei caratteri
 
 ##
 
