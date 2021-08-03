@@ -168,7 +168,7 @@ ggplot(spectralst, aes(x=bande)) +
  geom_line(aes(y=area_foresta03_anno2012), color="lightblue") +
  labs(x="bande",y="reflectance")
 
-#nel grafico vediamo come il pixel del time1(time1pixel1) c'è la tipica firma di un pixel vegetato, mentre nel time2(time2pixel1) è molto cambiata.
+#nel grafico vediamo come il pixel del 'area_foresta02_anno2000' ha la tipica firma di un pixel vegetato, mentre nel 'area_foresta02_anno2012' è molto cambiato.
 #questo procedimento normalmente si fa con moltissimi pixel. si usa una funzione per la generazione dei punti random e poi un'altra per estrarre da tutti i valori delle bande
 
 
