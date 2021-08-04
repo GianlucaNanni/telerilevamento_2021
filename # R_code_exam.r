@@ -176,14 +176,14 @@ ggplot(spectralst, aes(x=bande)) +
 
 
 # Funzione: spectralIndices, per calcolare gli indici multi-spettrali
-# Calcolo indici 1° immagine
+# Calcolo indici 1° immagine (a_d_2000)
 vi1 <- spectralIndices(a_d_2000, green = 3, red = 2, nir = 1) #colori associati al N° della banda
 # Cambio di colori
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
 plot(vi1, col=cl)
 
-# Calcolo indici 2° immagine
+# Calcolo indici 2° immagine (a_d_2012)
 vi2 <- spectralIndices(a_d_2012, green = 3, red = 2, nir = 1)
 # Cambio di colori
 cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
