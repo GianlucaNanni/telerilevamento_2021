@@ -56,7 +56,7 @@ pairs(TGa)
 a_d_2000 <- brick("amazon_deforestation_2000.jpg")
 a_d_2012 <- brick("amazon_deforestation_2012.jpg")
 
-# 12. spectral_signatures
+# Spectral_signatures
 
 
 # Funzione plotRGB: a_d_2000
@@ -189,18 +189,5 @@ vi2 <- spectralIndices(a_d_2012, green = 3, red = 2, nir = 1)
 cls <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 # Nuovo plot col cambio di colori
 plot(vi2, col=cls)
-
-
-
-
-
-##
-
-
-
-# deviazione standard? dvi/ndvi?
-
-# ordinare (##)
-
 
 ---------------------------------------------------------------------------------------
