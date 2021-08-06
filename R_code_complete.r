@@ -784,6 +784,7 @@ plot(ndvi2, col=cls)
 
 
 # Funzione: spectralIndices (Pacchetto: RStoolbox), per calcolare tutti gli indici
+# https://www.rdocumentation.org/packages/RStoolbox/versions/0.2.6/topics/spectralIndices
 # Calcolo indici 1° immagine
 vi1 <- spectralIndices(defor1, green = 3, red = 2, nir = 1) #colori associati al N° della banda
 # Cambio di colori
